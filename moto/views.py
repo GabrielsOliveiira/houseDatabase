@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpRequest, Http404
 
 from .models import Moto
 from .forms import OleoForm, ChainForm, WashedForm
@@ -38,8 +38,10 @@ def history(request, type):
         "washed": bike.lavagens
     }.get(type)
 
-    if data:
-        data = data.order_by("-date")
+    if data is None:
+        raise Http404("Historico não encontrado!")
+
+    data = data.order_by("-date")
 
     context = {"data": data}
 
