@@ -41,8 +41,24 @@ def history(request, type):
     if data is None:
         raise Http404("Historico não encontrado!")
 
-    data = data.order_by("-date")
+    orders = {
+        "oil": [
+            ("-date", "Data mais recente"),
+            ("date", "Data mais antiga"),
+            ("-price", "Maior preço"),
+            ("price", "Menor preço")
+        ],
 
-    context = {"data": data}
+        "chain": [
+            ("-date", "Data mais recente"),
+            ("date", "Data mais antiga")
+        ]
+    }.get(type)
+
+    order = request.GET.get("order", "-date")
+
+    data = data.order_by(order)
+
+    context = {"data": data, "orders": orders}
 
     return render(request, "moto/history.html", context)

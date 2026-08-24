@@ -1,3 +1,14 @@
+<form action="">
+    <label for="">Ordenar por:</label>
+
+    <select name="order" id="order">
+        {% for value, label in orders  %}
+            <option value={{value}}>{{label}}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Ordenar</button>
+</form>
 <ul>
     {% for i in data %}
         <li>{{i}}</li>
