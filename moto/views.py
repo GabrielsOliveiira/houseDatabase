@@ -41,21 +41,32 @@ def history(request, type):
     if data is None:
         raise Http404("Historico não encontrado!")
 
+    allowed_order = {
+        "date_desc": "-date",
+        "date_asc": "date",
+        "price_desc": "-price",
+        "price_asc": "price"
+    }
+
     orders = {
         "oil": [
-            ("-date", "Data mais recente"),
-            ("date", "Data mais antiga"),
-            ("-price", "Maior preço"),
-            ("price", "Menor preço")
+            ("date_desc", "Data mais recente"),
+            ("date_asc", "Data mais antiga"),
+            ("price_desc", "Maior preço"),
+            ("price_asc", "Menor preço")
         ],
 
         "chain": [
-            ("-date", "Data mais recente"),
-            ("date", "Data mais antiga")
+            ("date_desc", "Data mais recente"),
+            ("date_asc", "Data mais antiga")
+        ],
+        "washed": [
+            ("date_desc", "Data mais recente"),
+            ("date_asc", "Data mais antiga")
         ]
     }.get(type)
 
-    order = request.GET.get("order", "-date")
+    order = allowed_order.get(request.GET.get("order"), "-date")
 
     data = data.order_by(order)
 

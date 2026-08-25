@@ -7,6 +7,10 @@ class Moto(models.Model):
     def __str__(self):
         return f"Dono: {self.dono}"
 
+    @property
+    def ultimo_oleo(self):
+        return self.oleos.order_by("-date").first()
+
 class Oleo(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
@@ -15,6 +19,9 @@ class Oleo(models.Model):
 
     def __str__(self):
         return f"Preço: {self.price} na data: {self.date} enquanto ela tinha {self.kms} kms rodados."
+    
+    def need_to_change(self, current_kms):
+        return (current_kms-self.kms >= 1500) 
 
 class Washed(models.Model):
     date = models.DateField()
