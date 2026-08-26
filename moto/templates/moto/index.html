@@ -1,45 +1,17 @@
 {% load static %}
 
 <p>Info último óleo: {{itens.oil}}</p>
+
+<label for="">Calcular se precisa trocar o óleo</label>
+
+<input type="hidden" id="oldKms" data-kms="{{ itens.oil.kms }}">
+<input type="number" id="kmsInput" data-kms="{{ itens.oil.kms }}">
+
+<button id="calcButton">Calcular</button>
+
+<p id="oilResult"></p>
+
 <p>Info última lavagem: {{itens.washed}}</p>
 <p>Info última vez que colocou óleo na corrente: {{itens.chain}}</p>
-
-
-<form action="#" method="post">
-    {% csrf_token %}
-    
-    <label for="">Adicionar informações da ultima vez que colocou óleo</label>
-    <button type="button" class="btn-toggle" data-target="addOleo">Mostrar</button>
-
-    <div id="addOleo" style="display: none;">
-        {{ formOil }}
-        <button type="submit" name="form" value="oil">Adicionar</button>
-    </div>
-</form>
-
-<form action="#" method="post">
-    {% csrf_token %}
-
-    <label for="">Adicionar data da ultima vez que foi lavada</label>
-    <button type="button" class="btn-toggle" data-target="addWashed">Mostrar</button>
-
-    <div id="addWashed" style="display: none;">
-        {{ formWashed }}
-        <button type="submit" name="form" value="washed">Adicionar</button>
-    </div>
-
-</form>
-
-<form action="#" method="post">
-    {% csrf_token %}
-
-    <label for="">Adicionar data do último óleo colocado na corrente</label>
-    <button type="button" class="btn-toggle" data-target="addChain">Mostrar</button>
-
-    <div id="addChain" style="display: none;">
-        {{ formChain }}
-        <button type="submit" name="form" value="chain">Adicionar</button>
-    </div>
-</form>
 
 <script src="{% static 'moto/js/index.js' %}"></script>

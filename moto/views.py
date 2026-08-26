@@ -5,7 +5,22 @@ from .models import Moto
 from .forms import OleoForm, ChainForm, WashedForm
 
 # Create your views here.
-def index(request:HttpRequest):
+
+def index(request):
+
+    bike = Moto.objects.first()
+    
+    oil = bike.oleos.order_by("-date").first() 
+    washed = bike.lavagens.order_by("-date").first()
+    chain = bike.correntes.order_by("-date").first()
+
+    context = {
+    "itens": {"oil": oil, "washed": washed, "chain": chain}
+    }
+    
+    return render(request, "moto/index.html", context)
+
+def addInfo(request:HttpRequest):
 
     if request.method == "POST":
         type_form = request.POST.get("form")
@@ -19,14 +34,8 @@ def index(request:HttpRequest):
             if form.is_valid():
                 form.save()
 
-    bike = Moto.objects.first()
-    
-    oil = bike.oleos.order_by("-date").first() 
-    washed = bike.lavagens.order_by("-date").first()
-    chain = bike.correntes.order_by("-date").first()
-
-    context = {"itens": {"oil": oil, "washed": washed, "chain": chain}, "formOil": OleoForm(), "formWashed": WashedForm(), "formChain": ChainForm()}
-    return render(request, "moto/index.html", context)
+    context = {"formOil": OleoForm(), "formWashed": WashedForm(), "formChain": ChainForm()}
+    return render(request, "moto/addItem.html", context)
 
 def history(request, type):
     bike = Moto.objects.first()
