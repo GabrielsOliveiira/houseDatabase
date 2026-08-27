@@ -14,8 +14,10 @@ def index(request):
     washed = bike.lavagens.order_by("-date").first()
     chain = bike.correntes.order_by("-date").first()
 
+    chain_oil = bike.ultimo_oleo_corrente.expired()
+
     context = {
-    "itens": {"oil": oil, "washed": washed, "chain": chain}
+    "itens": {"oil": oil, "washed": washed, "chain": chain, "chain_oil": chain_oil}
     }
     
     return render(request, "moto/index.html", context)
@@ -50,7 +52,7 @@ def history(request, type):
     if data is None:
         raise Http404("Historico não encontrado!")
 
-    allowed_order = {
+    allowed_orders = {
         "date_desc": "-date",
         "date_asc": "date",
         "price_desc": "-price",
@@ -75,7 +77,10 @@ def history(request, type):
         ]
     }.get(type)
 
-    order = allowed_order.get(request.GET.get("order"), "-date")
+    order = allowed_orders.get(request.GET.get("order"), "-date")
+
+    if order not in allowed_orders:
+        order = "-date"
 
     data = data.order_by(order)
 

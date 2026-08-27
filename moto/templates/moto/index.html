@@ -5,7 +5,7 @@
 <label for="">Calcular se precisa trocar o óleo</label>
 
 <input type="hidden" id="oldKms" data-kms="{{ itens.oil.kms }}">
-<input type="number" id="kmsInput" data-kms="{{ itens.oil.kms }}">
+<input type="number" id="kmsInput">
 
 <button id="calcButton">Calcular</button>
 
@@ -13,5 +13,9 @@
 
 <p>Info última lavagem: {{itens.washed}}</p>
 <p>Info última vez que colocou óleo na corrente: {{itens.chain}}</p>
+
+{% if chain_oil_expired %}
+<p>Você deveria trocar o óleo da corrente</p>
+{% endif %}
 
 <script src="{% static 'moto/js/index.js' %}"></script>
