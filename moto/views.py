@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, Http404
 
-from .models import Moto
+from .models import Moto, Washed
 from .forms import OleoForm, ChainForm, WashedForm
 
 # Create your views here.
@@ -52,6 +52,12 @@ def history(request, type):
     if data is None:
         raise Http404("Historico não encontrado!")
 
+    form = {
+        "oil": OleoForm,
+        "chain": ChainForm,
+        "washed": WashedForm
+    }.get(type)
+
     allowed_orders = {
         "date_desc": "-date",
         "date_asc": "date",
@@ -84,6 +90,24 @@ def history(request, type):
 
     data = data.order_by(order)
 
-    context = {"data": data, "orders": orders}
+    context = {"data": data, "orders": orders, "form": form}
 
     return render(request, "moto/history.html", context)
+
+def delete_washed(request, id):
+    washed = get_object_or_404(Washed, id=id)
+
+    if request.method == "POST":
+        washed.delete()
+    return redirect("moto:history", type="washed")
+
+def update_washed(request, id):
+    washed = get_object_or_404(Washed, id=id)
+
+    if request.method == "POST":
+        form = WashedForm(request.POST, instance=washed)
+
+        if form.is_valid():
+            form.save()
+
+    return redirect("moto:history", type="washed")

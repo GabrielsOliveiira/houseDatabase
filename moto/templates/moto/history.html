@@ -1,3 +1,5 @@
+{% load static %}
+
 <form action="">
     <label for="">Ordenar por:</label>
 
@@ -12,5 +14,21 @@
 <ul>
     {% for i in data %}
         <li>{{i}}</li>
+
+        <button class="update">Atualizar</button>
+
+        <form method="post" action="{% url 'moto:delete_washed' i.id %}">
+            {% csrf_token %}
+            <button type="submit">Excluir</button>
+        </form>
     {% endfor %}
 </ul>
+
+<div id="divUpdate" style="display: none;">
+    <form action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+</div>
+
+<script src="{% static 'moto/js/history.js' %}"></script>
