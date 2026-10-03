@@ -1,34 +1,93 @@
 {% load static %}
 
-<form action="">
-    <label for="">Ordenar por:</label>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <select name="order" id="order">
-        {% for value, label in orders  %}
-            <option value={{value}}>{{label}}</option>
-        {% endfor %}
-    </select>
+    <title>Histórico</title>
 
-    <button type="submit">Ordenar</button>
-</form>
-<ul>
-    {% for i in data %}
-        <li>{{i}}</li>
+    <link rel="stylesheet" href="{% static 'moto/css/history.css' %}">
+</head>
 
-        <button class="update">Atualizar</button>
+<body>
 
-        <form method="post" action="{% url 'moto:delete_washed' i.id %}">
-            {% csrf_token %}
-            <button type="submit">Excluir</button>
-        </form>
-    {% endfor %}
-</ul>
+<div class="container">
 
-<div id="divUpdate" style="display: none;">
-    <form action="">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="page-header">
+        <h1>Histórico</h1>
+
+        <a href="{% url 'moto:index' %}" class="back-link">
+            ← Voltar
+        </a>
+    </div>
+
+    <form action="" class="order-form">
+        <label for="order">Ordenar por:</label>
+
+        <select name="order" id="order">
+            {% for value, label in orders %}
+                <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Ordenar</button>
     </form>
+
+    <div class="history-list">
+
+        {% for i in data %}
+
+            <div class="history-card">
+
+                <div class="history-info">
+                    <p>{{ i }}</p>
+                </div>
+
+                <div class="actions">
+
+                    <button class="update" type="button">
+                        Atualizar
+                    </button>
+
+                    <form method="post"
+                          action="{% url 'moto:delete_washed' i.id %}">
+                        {% csrf_token %}
+
+                        <button type="submit" class="delete">
+                            Excluir
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="empty">
+                <p>Nenhum registro encontrado.</p>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div id="divUpdate" class="update-container">
+
+        <form action="">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="save">
+                Salvar alterações
+            </button>
+        </form>
+
+    </div>
+
 </div>
 
 <script src="{% static 'moto/js/history.js' %}"></script>
+
+</body>

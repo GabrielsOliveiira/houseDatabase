@@ -1,26 +1,79 @@
 {% load static %}
 
-<p>Info último óleo: {{itens.oil}}</p>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<label for="">Calcular se precisa trocar o óleo</label>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<input type="hidden" id="oldKms" data-kms="{{ itens.oil.kms }}">
-<input type="number" id="kmsInput">
+    <title>Minha Moto</title>
 
-<button id="calcButton">Calcular</button>
+    <link rel="stylesheet" href="{% static 'moto/css/index.css' %}">
+</head>
 
-<p id="oilResult"></p>
+<body>
 
-<p>Info última lavagem: {{itens.washed}}</p>
-<p>Info última vez que colocou óleo na corrente: {{itens.chain}}</p>
+    <div class="container">
 
-{% if chain_oil_expired %}
-<p>Você deveria trocar o óleo da corrente</p>
-{% endif %}
+        <div class="info-card">
+            <h2>🛢️ Último óleo</h2>
+            <p>{{ itens.oil }}</p>
+        </div>
 
-<a href="{% url 'moto:history' type='oil' %}">Ver histórico de óleo</a><br>
-<a href="{% url 'moto:history' type='washed' %}">Ver histórico de lavagens</a><br>
-<a href="{% url 'moto:history' type='chain' %}">Ver histórico de óleo da corrente</a><br>
-<a href="{% url 'moto:addInfo' %}">Adiconar informação</a>
+        <div class="calculator">
+            <label for="kmsInput">Calcular se precisa trocar o óleo</label>
 
-<script src="{% static 'moto/js/index.js' %}"></script>
+            <input type="hidden" id="oldKms" data-kms="{{ itens.oil.kms }}">
+
+            <input
+                type="number"
+                id="kmsInput"
+                placeholder="Digite a quilometragem atual"
+            >
+
+            <button id="calcButton">Calcular</button>
+
+            <p id="oilResult"></p>
+        </div>
+
+        <div class="info-card">
+            <h2>🧼 Última lavagem</h2>
+            <p>{{ itens.washed }}</p>
+        </div>
+
+        <div class="info-card">
+            <h2>⛓️ Óleo da corrente</h2>
+            <p>{{ itens.chain }}</p>
+        </div>
+
+        {% if chain_oil_expired %}
+            <div class="warning">
+                ⚠️ Você deveria trocar o óleo da corrente.
+            </div>
+        {% endif %}
+
+        <div class="links">
+            <a href="{% url 'moto:history' type='oil' %}">
+                🛢️ Histórico de óleo
+            </a>
+
+            <a href="{% url 'moto:history' type='washed' %}">
+                🧼 Histórico de lavagens
+            </a>
+
+            <a href="{% url 'moto:history' type='chain' %}">
+                ⛓️ Histórico de óleo da corrente
+            </a>
+
+            <a href="{% url 'moto:addInfo' %}">
+                ➕ Adicionar informação
+            </a>
+        </div>
+
+    </div>
+
+    <script src="{% static 'moto/js/index.js' %}"></script>
+
+</body>
+</html>

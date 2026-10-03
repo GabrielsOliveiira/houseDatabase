@@ -1,41 +1,103 @@
 {% load static %}
 
-<form action="#" method="post">
-    {% csrf_token %}
-    
-    <label for="">Adicionar informações da ultima vez que colocou óleo</label>
-    <button type="button" class="btn-toggle" data-target="addOleo">Mostrar</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar informação</title>
 
-    <div id="addOleo" style="display: none;">
-        {{ formOil }}
-        <button type="submit" name="form" value="oil">Adicionar</button>
-    </div>
-</form>
+    <link rel="stylesheet" href="{% static 'moto/css/addItem.css' %}">
+</head>
 
-<form action="#" method="post">
-    {% csrf_token %}
+<body>
 
-    <label for="">Adicionar data da ultima vez que foi lavada</label>
-    <button type="button" class="btn-toggle" data-target="addWashed">Mostrar</button>
+<div class="container">
 
-    <div id="addWashed" style="display: none;">
-        {{ formWashed }}
-        <button type="submit" name="form" value="washed">Adicionar</button>
-    </div>
+    <h1>Adicionar informação</h1>
 
-</form>
+    <form action="#" method="post" class="info-form">
+        {% csrf_token %}
 
-<form action="#" method="post">
-    {% csrf_token %}
+        <div class="form-card">
+            <div class="form-header">
+                <div>
+                    <h2>🛢️ Óleo do motor</h2>
+                    <p>Adicionar informações da última troca de óleo.</p>
+                </div>
 
-    <label for="">Adicionar data do último óleo colocado na corrente</label>
-    <button type="button" class="btn-toggle" data-target="addChain">Mostrar</button>
+                <button type="button" class="btn-toggle" data-target="addOleo">
+                    Mostrar
+                </button>
+            </div>
 
-    <div id="addChain" style="display: none;">
-        {{ formChain }}
-        <button type="submit" name="form" value="chain">Adicionar</button>
-    </div>
-</form>
+            <div id="addOleo" class="form-content">
+                {{ formOil }}
 
-<a href="{% url 'moto:index' %}">Voltar</a>
+                <button type="submit" name="form" value="oil" class="btn-submit">
+                    Adicionar
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <form action="#" method="post" class="info-form">
+        {% csrf_token %}
+
+        <div class="form-card">
+            <div class="form-header">
+                <div>
+                    <h2>🧼 Lavagem</h2>
+                    <p>Adicionar a data da última lavagem.</p>
+                </div>
+
+                <button type="button" class="btn-toggle" data-target="addWashed">
+                    Mostrar
+                </button>
+            </div>
+
+            <div id="addWashed" class="form-content">
+                {{ formWashed }}
+
+                <button type="submit" name="form" value="washed" class="btn-submit">
+                    Adicionar
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <form action="#" method="post" class="info-form">
+        {% csrf_token %}
+
+        <div class="form-card">
+            <div class="form-header">
+                <div>
+                    <h2>⛓️ Óleo da corrente</h2>
+                    <p>Adicionar a data da última lubrificação.</p>
+                </div>
+
+                <button type="button" class="btn-toggle" data-target="addChain">
+                    Mostrar
+                </button>
+            </div>
+
+            <div id="addChain" class="form-content">
+                {{ formChain }}
+
+                <button type="submit" name="form" value="chain" class="btn-submit">
+                    Adicionar
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+    <a href="{% url 'moto:index' %}" class="back-link">
+        ← Voltar
+    </a>
+
+</div>
+
 <script src="{% static 'moto/js/addItem.js' %}"></script>
+
+</body>

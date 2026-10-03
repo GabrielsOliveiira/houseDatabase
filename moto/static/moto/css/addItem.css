@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #222;
+    padding: 30px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.info-form {
+    margin-bottom: 15px;
+}
+
+.form-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-header h2 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.btn-toggle {
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.btn-toggle:hover {
+    background-color: #444;
+}
+
+.form-content {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+/* Campos dos formulários do Django */
+
+.form-content p {
+    margin-bottom: 15px;
+}
+
+.form-content label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-content input,
+.form-content select,
+.form-content textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+/* Botão adicionar */
+
+.btn-submit {
+    margin-top: 10px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn-submit:hover {
+    background-color: #444;
+}
+
+/* Voltar */
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #222;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .form-card {
+        padding: 15px;
+    }
+
+    .form-header {
+        align-items: flex-start;
+    }
+
+    .form-header h2 {
+        font-size: 17px;
+    }
+
+    .btn-toggle {
+        padding: 8px 12px;
+    }
+}

@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #222;
+    padding: 30px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Títulos e informações */
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Cards */
+
+.info-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.info-card h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+/* Área do cálculo */
+
+.calculator {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.calculator label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #222;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+#oilResult {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Aviso */
+
+.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffe69c;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* Links */
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.links a {
+    display: block;
+    padding: 12px 15px;
+    background-color: white;
+    color: #222;
+    text-decoration: none;
+    border-radius: 7px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: 0.2s;
+}
+
+.links a:hover {
+    background-color: #222;
+    color: white;
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .info-card,
+    .calculator {
+        padding: 15px;
+    }
+}
