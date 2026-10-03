@@ -18,4 +18,9 @@
 <p>Você deveria trocar o óleo da corrente</p>
 {% endif %}
 
+<a href="{% url 'moto:history' type='oil' %}">Ver histórico de óleo</a><br>
+<a href="{% url 'moto:history' type='washed' %}">Ver histórico de lavagens</a><br>
+<a href="{% url 'moto:history' type='chain' %}">Ver histórico de óleo da corrente</a><br>
+<a href="{% url 'moto:addInfo' %}">Adiconar informação</a>
+
 <script src="{% static 'moto/js/index.js' %}"></script>
