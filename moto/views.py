@@ -83,11 +83,13 @@ def history(request, type):
         ]
     }.get(type)
 
-    order = allowed_orders.get(request.GET.get("order"), "-date")
+    selected_order = request.GET.get("order", "date_desc")
 
-    if order not in allowed_orders:
-        order = "-date"
+    if selected_order not in allowed_orders:
+        selected_order = "date_desc"
 
+    order = allowed_orders[selected_order]
+    
     data = data.order_by(order)
 
     context = {"data": data, "orders": orders, "form": form}
