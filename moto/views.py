@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, Http404
 
-from .models import Moto, Washed
+from .models import Chain, Moto, Oleo, Washed
 from .forms import OleoForm, ChainForm, WashedForm
 
 # Create your views here.
@@ -92,24 +92,44 @@ def history(request, type):
     
     data = data.order_by(order)
 
-    context = {"data": data, "orders": orders, "form": form}
+    context = {"data": data, "orders": orders, "form": form, "type": type}
 
     return render(request, "moto/history.html", context)
 
-def delete_washed(request, id):
-    washed = get_object_or_404(Washed, id=id)
+
+def delete(request, type, id):
+
+    configs = {
+        "oil": Oleo,
+        "washed": Washed,
+        "chain": Chain,
+    }
+
+    model = configs[type]
+
+    obj = get_object_or_404(model, id=id)
 
     if request.method == "POST":
-        washed.delete()
-    return redirect("moto:history", type="washed")
+        obj.delete()
 
-def update_washed(request, id):
-    washed = get_object_or_404(Washed, id=id)
+    return redirect("moto:history", type=type)
+
+def update(request, type, id):
+
+    configs = {
+        "oil": (Oleo, OleoForm),
+        "washed": (Washed, WashedForm),
+        "chain": (Chain, ChainForm),
+    }
+
+    model, form_class = configs[type]
+
+    obj = get_object_or_404(model, id=id)
 
     if request.method == "POST":
-        form = WashedForm(request.POST, instance=washed)
+        form = form_class(request.POST, instance=obj)
 
         if form.is_valid():
             form.save()
 
-    return redirect("moto:history", type="washed")
+    return redirect("moto:history", type=type)

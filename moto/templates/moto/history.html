@@ -45,12 +45,12 @@
 
                 <div class="actions">
 
-                    <button class="update" type="button">
+                    <button class="update" type="button" data-id="{{ i.id }}">
                         Atualizar
                     </button>
 
                     <form method="post"
-                          action="{% url 'moto:delete_washed' i.id %}">
+                          action="{% url 'moto:delete' type=type id=i.id %}">
                         {% csrf_token %}
 
                         <button type="submit" class="delete">
@@ -72,14 +72,14 @@
 
     </div>
 
-    <div id="divUpdate" class="update-container">
+    <div id="divUpdate" class="update-container" style="display: none;">
 
-        <form action="">
+        <form action="" method="post" data-type="{{ type }}" id="formUpdate">
             {% csrf_token %}
 
             {{ form.as_p }}
 
-            <button type="submit" class="save">
+            <button type="button" class="save" id="btnSave">
                 Salvar alterações
             </button>
         </form>
