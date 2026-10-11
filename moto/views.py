@@ -10,11 +10,12 @@ def index(request):
 
     bike = Moto.objects.first()
     
-    oil = bike.oleos.order_by("-date").first() 
+    oil = bike.oleos.order_by("-date").first()
     washed = bike.lavagens.order_by("-date").first()
     chain = bike.correntes.order_by("-date").first()
 
-    chain_oil = bike.ultimo_oleo_corrente.expired()
+    ultimo_oleo_corrente = bike.ultimo_oleo_corrente
+    chain_oil = (ultimo_oleo_corrente.expired() if ultimo_oleo_corrente else None)
 
     context = {
     "itens": {"oil": oil, "washed": washed, "chain": chain, "chain_oil": chain_oil}

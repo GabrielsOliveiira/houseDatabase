@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cadastro de usuário</title>
+
+        <link rel="stylesheet" href="{% static 'usuario/css/cadastro.css' %}">
+</head>
+<body>
+    <h1>Cadastrar usuário</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>

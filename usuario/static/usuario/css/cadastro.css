@@ -1,0 +1,131 @@
+
+/* ===== Configurações gerais ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #17263e, #263c5b);
+    color: #17263e;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 16px;
+}
+
+/* ===== Título ===== */
+h1 {
+    color: #c6c7ca;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ===== Formulário ===== */
+form {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Parágrafos gerados pelo form.as_p */
+form p {
+    margin-bottom: 22px;
+}
+
+/* Rótulos */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #263c5b;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Campos */
+form input {
+    display: block;
+    width: 100%;
+    padding: 13px 14px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font-size: 1rem;
+    color: #17263e;
+    background-color: #ffffff;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Campo selecionado */
+form input:focus {
+    outline: none;
+    border-color: #2878ed;
+    box-shadow: 0 0 0 3px rgba(40, 120, 237, 0.15);
+}
+
+/* Placeholder */
+form input::placeholder {
+    color: #94a3b8;
+}
+
+/* ===== Botão ===== */
+form button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 8px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2878ed;
+    color: white;
+
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: #1d5fc4;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+/* ===== Erros de validação Django ===== */
+.errorlist {
+    list-style: none;
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 6px;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    form {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 1.65rem;
+    }
+}

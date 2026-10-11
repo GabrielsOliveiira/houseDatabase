@@ -1,0 +1,35 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar informação</title>
+
+    <link rel="stylesheet" href="{% static 'usuario/css/home.css' %}">
+</head>
+
+<body>
+
+<main class="home">
+
+    <header>
+        <h1>Olá, {{ request.user.username }}!</h1>
+        <p>Confira suas motos cadastradas.</p>
+    </header>
+
+    <section class="motos">
+        <h2>Minhas motos</h2>
+
+        {% for moto in motos %}
+            <article class="moto-card">
+                <h3>{{ moto }}</h3>
+            </article>
+        {% empty %}
+            <p>Você ainda não possui motos cadastradas.</p>
+        {% endfor %}
+
+    </section>
+
+</main>
+
+</body>

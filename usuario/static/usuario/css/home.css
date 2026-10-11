@@ -1,0 +1,87 @@
+/* Estrutura principal */
+.home {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    color: #222;
+}
+
+/* Cabeçalho */
+.home header {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.home header h1 {
+    margin: 0 0 10px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.home header p {
+    margin: 0;
+    color: #777;
+    font-size: 1rem;
+}
+
+/* Seção de motos */
+.motos h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+/* Cartão de cada moto */
+.moto-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 22px;
+    margin-bottom: 15px;
+
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+
+    box-shadow: 0 3px 10px rgb(0 0 0 / 4%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.moto-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 8%);
+}
+
+.moto-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Mensagem quando não existem motos */
+.motos > p {
+    padding: 25px;
+    text-align: center;
+    color: #777;
+    background: #f8f8f8;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .home {
+        margin: 20px auto;
+        padding: 16px;
+    }
+
+    .home header h1 {
+        font-size: 1.6rem;
+    }
+
+    .moto-card {
+        padding: 18px;
+    }
+}

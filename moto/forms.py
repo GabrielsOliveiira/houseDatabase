@@ -1,12 +1,6 @@
 from django import forms
 from .models import Moto, Oleo, Washed, Chain
 
-class MotoForm(forms.ModelForm):
-    class Meta:
-        model = Moto
-        fields = ['dono']
-    dono = forms.CharField(label='Dono', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
 class OleoForm(forms.ModelForm):
     class Meta:
         model = Oleo

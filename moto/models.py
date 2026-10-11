@@ -1,12 +1,13 @@
 from django.db import models
 from datetime import date
+from usuario.models import Usuario
 
 # Create your models here.
 class Moto(models.Model):
-    dono = models.CharField(max_length=100)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='motos')
 
     def __str__(self):
-        return f"Dono: {self.dono}"
+        return f"Dono: {self.usuario.nome}"
 
     @property
     def ultimo_oleo(self):
