@@ -23,12 +23,33 @@
         {% for moto in motos %}
             <article class="moto-card">
                 <h3>{{ moto }}</h3>
+                    <form action="{% url 'delMoto' moto.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-excluir" aria-label="Excluir moto">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M3 6h18"/>
+                            <path d="M8 6V4h8v2"/>
+                            <path d="m19 6-1 14H6L5 6"/>
+                            <path d="M10 11v5"/>
+                            <path d="M14 11v5"/>
+                        </svg>
+                </button>
+            </form>
             </article>
         {% empty %}
             <p>Você ainda não possui motos cadastradas.</p>
         {% endfor %}
 
     </section>
+
+    <form action="{% url 'addMoto' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" id="addMoto">Adicionar moto</button>
+    </form>
 
 </main>
 

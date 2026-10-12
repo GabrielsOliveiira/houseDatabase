@@ -37,14 +37,11 @@
     display: flex;
     align-items: center;
     gap: 16px;
-
     padding: 22px;
     margin-bottom: 15px;
-
     background: #fff;
     border: 1px solid #e8e8e8;
     border-radius: 12px;
-
     box-shadow: 0 3px 10px rgb(0 0 0 / 4%);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -70,6 +67,82 @@
     border-radius: 12px;
 }
 
+/* Formulário */
+.home form {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Botão adicionar moto */
+#addMoto {
+    display: inline-block;
+    padding: 13px 22px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+#addMoto:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+}
+
+/* Efeito ao clicar */
+#addMoto:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Acessibilidade */
+#addMoto:focus-visible {
+    outline: 3px solid #888;
+    outline-offset: 3px;
+}
+
+.moto-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Formulário da lixeira */
+.moto-card form {
+    margin: 0;
+}
+
+/* Botão de excluir */
+.btn-excluir {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: #dc2626;
+    background: #fff;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                color 0.2s ease;
+}
+
+.btn-excluir:hover {
+    background-color: #dc2626;
+    color: #fff;
+}
+
 /* Responsividade */
 @media (max-width: 600px) {
     .home {
@@ -83,5 +156,14 @@
 
     .moto-card {
         padding: 18px;
+    }
+
+    .home form {
+        width: 100%;
+    }
+
+    #addMoto {
+        width: 100%;
+        padding: 14px;
     }
 }

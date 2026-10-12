@@ -22,5 +22,21 @@ def cadastro(request):
     })
 
 def home(request):
-    
-    return render(request, "usuario/home.html")
+    user = Usuario.objects.first()
+    motos = Moto.objects.filter(usuario_id=user)
+
+    return render(request, "usuario/home.html", {
+        "motos": motos
+    })
+
+def addMoto(request):
+    user = Usuario.objects.first()
+    Moto.objects.create(usuario=user).save()
+
+    return redirect("home")
+
+def excluirMoto(request, moto_id):
+    moto = Moto.objects.filter(id=moto_id)
+    moto.delete()
+
+    return redirect("home")

@@ -3,5 +3,7 @@ from . import views
 
 urlpatterns = [
     path("cadastro/", views.cadastro, name="cadastro"),
-    path("home/", views.home, name="home")
+    path("home/", views.home, name="home"),
+    path("moto/adicionar", views.addMoto, name="addMoto"),
+    path("moto/excluir/<int:moto_id>/", views.excluirMoto, name="delMoto")
 ]
