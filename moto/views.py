@@ -4,6 +4,8 @@ from django.http import HttpRequest, Http404
 from .models import Chain, Moto, Oleo, Washed
 from .forms import OleoForm, ChainForm, WashedForm
 
+from .services import adicionarInformacao, escolherFormulario, escolherOrdem, ordensPermitidas
+
 # Create your views here.
 
 def index(request, id):
@@ -25,21 +27,8 @@ def index(request, id):
 
 def addInfo(request:HttpRequest, id):
 
-    moto = get_object_or_404(Moto, id=id)
-
     if request.method == "POST":
-        type_form = request.POST.get("form")
-
-        forms = {"oil": OleoForm, "chain": ChainForm, "washed": WashedForm}
-        form_class = forms.get(type_form)
-
-        if form_class:
-            form = form_class(request.POST)
-
-            if form.is_valid():
-                item = form.save(commit=False)
-                item.moto = moto
-                item.save()
+        adicionarInformacao(request, id)
 
     context = {"formOil": OleoForm(), "formWashed": WashedForm(), "formChain": ChainForm(), "moto_id": 53}
     return render(request, "moto/addItem.html", context)
@@ -57,36 +46,11 @@ def history(request, type):
     if data is None:
         raise Http404("Historico não encontrado!")
 
-    form = {
-        "oil": OleoForm,
-        "chain": ChainForm,
-        "washed": WashedForm
-    }.get(type)
+    form = escolherFormulario(type)
 
-    allowed_orders = {
-        "date_desc": "-date",
-        "date_asc": "date",
-        "price_desc": "-price",
-        "price_asc": "price"
-    }
+    allowed_orders = ordensPermitidas()
 
-    orders = {
-        "oil": [
-            ("date_desc", "Data mais recente"),
-            ("date_asc", "Data mais antiga"),
-            ("price_desc", "Maior preço"),
-            ("price_asc", "Menor preço")
-        ],
-
-        "chain": [
-            ("date_desc", "Data mais recente"),
-            ("date_asc", "Data mais antiga")
-        ],
-        "washed": [
-            ("date_desc", "Data mais recente"),
-            ("date_asc", "Data mais antiga")
-        ]
-    }.get(type)
+    orders = escolherOrdem(type)
 
     selected_order = request.GET.get("order", "date_desc")
 

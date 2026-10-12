@@ -10,6 +10,9 @@ from .services import deleteMoto, adicionarMoto
 
 # Create your views here.
 
+def login(request):
+    return render(request, "usuario/login.html")
+
 def cadastro(request):
     if request.method == "POST":
         form = UsuarioForm(request.POST)
