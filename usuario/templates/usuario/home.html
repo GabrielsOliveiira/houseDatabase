@@ -22,7 +22,10 @@
 
         {% for moto in motos %}
             <article class="moto-card">
-                <h3>{{ moto }}</h3>
+                <form action="{% url 'moto:index' moto.id %}">
+                    <button>{{ moto }}</button>
+                </form>
+                
                     <form action="{% url 'delMoto' moto.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn-excluir" aria-label="Excluir moto">

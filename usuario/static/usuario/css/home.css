@@ -51,10 +51,15 @@
     box-shadow: 0 6px 18px rgb(0 0 0 / 8%);
 }
 
-.moto-card h3 {
+.moto-card form button {
     margin: 0;
     font-size: 1.1rem;
     font-weight: 600;
+    border: none
+}
+
+.moto-card form button:hover {
+    cursor: pointer;
 }
 
 /* Mensagem quando não existem motos */

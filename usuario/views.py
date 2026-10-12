@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import UsuarioForm
+
 from moto.models import Moto
 from .models import Usuario
+
+from .services import deleteMoto, adicionarMoto
 
 
 # Create your views here.
@@ -30,13 +33,11 @@ def home(request):
     })
 
 def addMoto(request):
-    user = Usuario.objects.first()
-    Moto.objects.create(usuario=user).save()
-
+    
+    adicionarMoto()
     return redirect("home")
 
 def excluirMoto(request, moto_id):
-    moto = Moto.objects.filter(id=moto_id)
-    moto.delete()
 
+    deleteMoto(moto_id)
     return redirect("home")
