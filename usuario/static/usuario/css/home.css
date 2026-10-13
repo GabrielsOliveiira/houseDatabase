@@ -1,131 +1,113 @@
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #10141c;
+    color: #e8edf5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /* Estrutura principal */
 .home {
+    width: 100%;
     max-width: 1000px;
-    margin: 40px auto;
-    padding: 24px;
-    font-family: Arial, sans-serif;
-    color: #222;
+    margin: 0 auto;
+    padding: 48px 24px;
 }
 
 /* Cabeçalho */
 .home header {
-    margin-bottom: 35px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 36px;
+    padding: 28px 30px;
+    background: #1a202b;
+    border: 1px solid #2b3443;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .home header h1 {
-    margin: 0 0 10px;
-    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #f1f5f9;
+    font-size: 30px;
     font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .home header p {
-    margin: 0;
-    color: #777;
-    font-size: 1rem;
+    color: #94a3b8;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
 /* Seção de motos */
 .motos h2 {
     margin-bottom: 20px;
-    font-size: 1.4rem;
+    color: #e8edf5;
+    font-size: 21px;
+    font-weight: 700;
 }
 
 /* Cartão de cada moto */
 .moto-card {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
-    padding: 22px;
-    margin-bottom: 15px;
-    background: #fff;
-    border: 1px solid #e8e8e8;
+    margin-bottom: 14px;
+    padding: 18px 20px;
+    background: #1a202b;
+    border: 1px solid #2b3443;
     border-radius: 12px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 4%);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.moto-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgb(0 0 0 / 8%);
-}
-
-.moto-card form button {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border: none
-}
-
-.moto-card form button:hover {
-    cursor: pointer;
-}
-
-/* Mensagem quando não existem motos */
-.motos > p {
-    padding: 25px;
-    text-align: center;
-    color: #777;
-    background: #f8f8f8;
-    border: 1px dashed #ccc;
-    border-radius: 12px;
-}
-
-/* Formulário */
-.home form {
-    margin-top: 25px;
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* Botão adicionar moto */
-#addMoto {
-    display: inline-block;
-    padding: 13px 22px;
-    background-color: #222;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease,
+    transition: border-color 0.2s ease,
                 transform 0.2s ease,
                 box-shadow 0.2s ease;
 }
 
-/* Efeito ao passar o mouse */
-#addMoto:hover {
-    background-color: #444;
+.moto-card:hover {
+    border-color: #3b82f6;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 12%);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-/* Efeito ao clicar */
-#addMoto:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
-/* Acessibilidade */
-#addMoto:focus-visible {
-    outline: 3px solid #888;
-    outline-offset: 3px;
-}
-
-.moto-card {
+/* Formulários dentro dos cartões */
+.moto-card form {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    margin: 0;
+}
+
+/* Botão com o nome da moto */
+.moto-card form:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.moto-card form:first-child button {
+    width: 100%;
+    padding: 8px 0;
+    overflow-wrap: anywhere;
+    background: transparent;
+    color: #e8edf5;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.moto-card form:first-child button:hover {
+    color: #60a5fa;
 }
 
 /* Formulário da lixeira */
-.moto-card form {
-    margin: 0;
+.moto-card form:last-child {
+    flex-shrink: 0;
 }
 
 /* Botão de excluir */
@@ -133,37 +115,123 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 42px;
+    height: 42px;
     padding: 10px;
-    color: #dc2626;
-    background: #fff;
-    border: 1px solid #fecaca;
-    border-radius: 8px;
+    background: rgba(239, 68, 68, 0.08);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 9px;
     cursor: pointer;
-    transition: background-color 0.2s ease,
-                color 0.2s ease;
+    transition: background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
 }
 
 .btn-excluir:hover {
-    background-color: #dc2626;
-    color: #fff;
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+}
+
+.btn-excluir:focus-visible,
+.moto-card form:first-child button:focus-visible {
+    outline: 2px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* Mensagem quando não existem motos */
+.motos > p {
+    padding: 28px 20px;
+    background: #1a202b;
+    color: #94a3b8;
+    border: 1px dashed #354154;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Formulário de adicionar moto */
+.home > form {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 24px;
+}
+
+/* Botão adicionar moto */
+#addMoto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 13px 22px;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+#addMoto:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+}
+
+#addMoto:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+#addMoto:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 4px;
 }
 
 /* Responsividade */
 @media (max-width: 600px) {
     .home {
-        margin: 20px auto;
-        padding: 16px;
+        padding: 24px 16px;
+    }
+
+    .home header {
+        margin-bottom: 28px;
+        padding: 24px 20px;
     }
 
     .home header h1 {
-        font-size: 1.6rem;
+        font-size: 25px;
+    }
+
+    .home header p {
+        font-size: 14px;
+    }
+
+    .motos h2 {
+        font-size: 19px;
     }
 
     .moto-card {
-        padding: 18px;
+        gap: 12px;
+        padding: 14px;
     }
 
-    .home form {
+    .moto-card form:first-child button {
+        font-size: 14px;
+    }
+
+    .btn-excluir {
+        width: 40px;
+        height: 40px;
+    }
+
+    .home > form {
         width: 100%;
     }
 

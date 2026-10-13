@@ -1,3 +1,6 @@
+/* =========================
+   Configurações gerais
+========================= */
 * {
     margin: 0;
     padding: 0;
@@ -5,145 +8,313 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: #222;
-    padding: 30px;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #10141c;
+    color: #e8edf5;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+/* =========================
+   Container principal
+========================= */
 .container {
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
 }
 
-h1 {
-    margin-bottom: 25px;
-    font-size: 28px;
+/* =========================
+   Título da página
+========================= */
+.container > h1 {
+    margin-bottom: 30px;
+    color: #f1f5f9;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
+/* =========================
+   Formulários
+========================= */
 .info-form {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
+/* Cartão de cada categoria */
 .form-card {
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    background: #1a202b;
+    border: 1px solid #2b3443;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
+.form-card:hover {
+    border-color: #3b4b63;
+}
+
+/* =========================
+   Cabeçalho dos cartões
+========================= */
 .form-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
+    padding: 24px;
 }
 
 .form-header h2 {
+    margin-bottom: 9px;
+    color: #f1f5f9;
     font-size: 19px;
-    margin-bottom: 6px;
+    font-weight: 700;
 }
 
 .form-header p {
-    color: #666;
+    color: #94a3b8;
     font-size: 14px;
+    line-height: 1.6;
 }
 
+/* Botão mostrar/ocultar */
 .btn-toggle {
-    background-color: #222;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 9px 16px;
+    flex-shrink: 0;
+    min-width: 90px;
+    padding: 10px 16px;
+    background: #111722;
+    color: #93c5fd;
+    border: 1px solid #354154;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 14px;
-    white-space: nowrap;
+    transition: background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
 }
 
 .btn-toggle:hover {
-    background-color: #444;
+    background: #253248;
+    color: #bfdbfe;
+    border-color: #3b82f6;
+    transform: translateY(-1px);
 }
 
+.btn-toggle:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* =========================
+   Conteúdo dos formulários
+========================= */
 .form-content {
     display: none;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
+    padding: 24px;
+    border-top: 1px solid #2b3443;
 }
 
-/* Campos dos formulários do Django */
-
+/* Campos gerados pelo Django */
 .form-content p {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .form-content label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 6px;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .form-content input,
 .form-content select,
 .form-content textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
+    padding: 12px 14px;
+    background: #111722;
+    color: #f1f5f9;
+    border: 1px solid #354154;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
-/* Botão adicionar */
+.form-content input::placeholder,
+.form-content textarea::placeholder {
+    color: #64748b;
+}
 
+.form-content input:focus,
+.form-content select:focus,
+.form-content textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-content textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Campos de data */
+.form-content input[type="date"] {
+    color-scheme: dark;
+}
+
+/* Campos numéricos */
+.form-content input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.form-content input[type="number"]::-webkit-inner-spin-button,
+.form-content input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+/* Textos auxiliares do Django */
+.form-content .helptext {
+    margin-top: 4px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Erros de validação */
+.form-content .errorlist {
+    margin-bottom: 8px;
+    padding-left: 18px;
+    color: #f87171;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* =========================
+   Botão adicionar
+========================= */
 .btn-submit {
-    margin-top: 10px;
-    padding: 10px 18px;
+    width: 100%;
+    margin-top: 4px;
+    padding: 13px 20px;
+    background: #3b82f6;
+    color: #ffffff;
     border: none;
-    border-radius: 6px;
-    background-color: #222;
-    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 15px;
+    transition: background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
 .btn-submit:hover {
-    background-color: #444;
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
-/* Voltar */
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
 
+.btn-submit:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* =========================
+   Botão voltar
+========================= */
 .back-link {
-    display: inline-block;
-    margin-top: 15px;
-    color: #222;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 12px 18px;
+    background: #1a202b;
+    color: #93c5fd;
+    border: 1px solid #2b3443;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: bold;
+    transition: background 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
 }
 
 .back-link:hover {
-    text-decoration: underline;
+    background: #253248;
+    border-color: #3b82f6;
+    transform: translateY(-1px);
 }
 
-/* Celular */
+.back-link:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
 
+/* =========================
+   Responsividade
+========================= */
 @media (max-width: 600px) {
     body {
-        padding: 15px;
+        padding: 24px 14px;
     }
 
-    .form-card {
-        padding: 15px;
+    .container > h1 {
+        margin-bottom: 24px;
+        font-size: 25px;
     }
 
     .form-header {
-        align-items: flex-start;
+        gap: 12px;
+        padding: 20px 16px;
     }
 
     .form-header h2 {
         font-size: 17px;
     }
 
+    .form-header p {
+        font-size: 13px;
+    }
+
     .btn-toggle {
-        padding: 8px 12px;
+        min-width: 78px;
+        padding: 10px 12px;
+    }
+
+    .form-content {
+        padding: 20px 16px;
+    }
+
+    .back-link {
+        width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .form-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .btn-toggle {
+        width: 100%;
     }
 }

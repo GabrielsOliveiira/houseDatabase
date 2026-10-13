@@ -1,3 +1,4 @@
+/* Configurações gerais */
 * {
     margin: 0;
     padding: 0;
@@ -5,129 +6,248 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: #222;
-    padding: 30px;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #10141c;
+    color: #e8edf5;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Container principal */
 .container {
-    max-width: 800px;
+    width: 100%;
+    max-width: 850px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-/* Títulos e informações */
-
-p {
-    margin-bottom: 15px;
-    line-height: 1.5;
-}
-
-/* Cards */
-
+/* Cartões de informação */
 .info-card {
-    background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    background: #1a202b;
+    border: 1px solid #2b3443;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition: border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.info-card:hover {
+    border-color: #3b4b63;
+    transform: translateY(-2px);
 }
 
 .info-card h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
+    margin-bottom: 14px;
+    color: #f1f5f9;
+    font-size: 19px;
+    font-weight: 700;
 }
 
-/* Área do cálculo */
+.info-card p {
+    color: #aab7ca;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
 
+/* Calculadora de óleo */
 .calculator {
-    background: white;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 26px;
+    background: #1a202b;
+    border: 1px solid #2b3443;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
 .calculator label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
+    color: #f1f5f9;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
 }
 
-input[type="number"] {
+.calculator input[type="number"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-button {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 6px;
-    background-color: #222;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #444;
-}
-
-#oilResult {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-/* Aviso */
-
-.warning {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffe69c;
-    padding: 15px;
+    padding: 13px 14px;
+    background: #111722;
+    color: #f1f5f9;
+    border: 1px solid #354154;
     border-radius: 8px;
-    margin: 20px 0;
-    font-weight: bold;
+    outline: none;
+    font-size: 15px;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
 }
 
-/* Links */
-
-.links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 25px;
+.calculator input[type="number"]::placeholder {
+    color: #64748b;
 }
 
-.links a {
+.calculator input[type="number"]:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Botão calcular */
+#calcButton {
+    width: 100%;
+    padding: 13px 20px;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+#calcButton:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+#calcButton:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+#calcButton:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* Resultado da calculadora */
+#oilResult {
+    display: none;
+    padding: 14px 16px;
+    background: #111722;
+    color: #cbd5e1;
+    border: 1px solid #354154;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* O JavaScript pode exibir o resultado definindo display */
+#oilResult:not(:empty) {
     display: block;
-    padding: 12px 15px;
-    background-color: white;
-    color: #222;
+}
+
+/* Aviso de manutenção */
+.warning {
+    padding: 18px 20px;
+    background: rgba(239, 68, 68, 0.09);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+/* Área de navegação */
+.links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 6px;
+}
+
+/* Links de histórico e ações */
+.links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 13px 16px;
+    background: #1a202b;
+    color: #93c5fd;
+    border: 1px solid #2b3443;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
     text-decoration: none;
-    border-radius: 7px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    transition: 0.2s;
+    overflow-wrap: anywhere;
+    transition: background 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
 }
 
 .links a:hover {
-    background-color: #222;
-    color: white;
+    background: #253248;
+    color: #bfdbfe;
+    border-color: #3b82f6;
+    transform: translateY(-2px);
 }
 
-/* Celular */
+.links a:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
 
+/* Último link: voltar */
+.links a:last-child {
+    background: #111722;
+    color: #cbd5e1;
+    border-color: #354154;
+}
+
+.links a:last-child:hover {
+    background: #253248;
+    color: #ffffff;
+    border-color: #64748b;
+}
+
+/* Adaptação para celulares */
 @media (max-width: 600px) {
     body {
-        padding: 15px;
+        padding: 22px 14px;
     }
 
-    .info-card,
+    .container {
+        gap: 15px;
+    }
+
+    .info-card {
+        padding: 20px;
+    }
+
+    .info-card h2 {
+        font-size: 17px;
+    }
+
+    .info-card p {
+        font-size: 14px;
+    }
+
     .calculator {
-        padding: 15px;
+        padding: 20px;
+    }
+
+    .calculator label {
+        font-size: 16px;
+    }
+
+    .links {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .links a {
+        min-height: 46px;
     }
 }

@@ -1,6 +1,4 @@
-
-/* ===== Configurações gerais ===== */
-* {
+* { 
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,124 +6,142 @@
 
 body {
     min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #17263e, #263c5b);
-    color: #17263e;
-
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 30px 16px;
+    align-items: center;
+    padding: 24px;
+    background: #10141c;
+    color: #e8edf5;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ===== Título ===== */
 h1 {
-    color: #c6c7ca;
-    font-size: 2rem;
+    margin-bottom: 28px;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
     text-align: center;
-    margin-bottom: 10px;
 }
 
-/* ===== Formulário ===== */
 form {
     width: 100%;
-    max-width: 600px;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    max-width: 420px;
+    padding: 32px;
+    background: #1a202b;
+    border: 1px solid #2b3443;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
 
-/* Parágrafos gerados pelo form.as_p */
 form p {
-    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
-/* Rótulos */
 form label {
-    display: block;
-    margin-bottom: 8px;
-    color: #263c5b;
-    font-size: 0.95rem;
+    color: #cbd5e1;
+    font-size: 14px;
     font-weight: 600;
 }
 
-/* Campos */
 form input {
-    display: block;
     width: 100%;
-    padding: 13px 14px;
-
-    border: 1px solid #cbd5e1;
+    padding: 12px 14px;
+    background: #111722;
+    color: #f1f5f9;
+    border: 1px solid #354154;
     border-radius: 8px;
-
-    font-size: 1rem;
-    color: #17263e;
-    background-color: #ffffff;
-
+    outline: none;
+    font-size: 15px;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-/* Campo selecionado */
 form input:focus {
-    outline: none;
-    border-color: #2878ed;
-    box-shadow: 0 0 0 3px rgba(40, 120, 237, 0.15);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-/* Placeholder */
 form input::placeholder {
-    color: #94a3b8;
+    color: #64748b;
 }
 
-/* ===== Botão ===== */
+form ul {
+    margin: 8px 0 0 18px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+form .helptext {
+    margin-top: 4px;
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
 form button {
     width: 100%;
-    padding: 15px;
     margin-top: 8px;
-
+    padding: 13px;
+    background: #3b82f6;
+    color: #ffffff;
     border: none;
     border-radius: 8px;
-
-    background-color: #2878ed;
-    color: white;
-
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s;
 }
 
 form button:hover {
-    background-color: #1d5fc4;
-    transform: translateY(-2px);
+    background: #2563eb;
+    transform: translateY(-1px);
 }
 
 form button:active {
     transform: translateY(0);
 }
 
-/* ===== Erros de validação Django ===== */
-.errorlist {
-    list-style: none;
-    color: #dc2626;
-    font-size: 0.875rem;
-    margin-top: 6px;
+body > p {
+    margin-top: 24px;
+    color: #94a3b8;
+    font-size: 14px;
+    text-align: center;
 }
 
-/* ===== Responsividade ===== */
+body > p a {
+    margin-left: 4px;
+    color: #60a5fa;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+body > p a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+.errorlist {
+    margin: 0 0 8px;
+    padding-left: 18px;
+    color: #f87171;
+    font-size: 13px;
+}
+
 @media (max-width: 480px) {
     body {
-        padding: 20px 12px;
-    }
-
-    form {
-        padding: 25px 20px;
+        padding: 16px;
     }
 
     h1 {
-        font-size: 1.65rem;
+        font-size: 26px;
+    }
+
+    form {
+        padding: 24px 20px;
     }
 }
