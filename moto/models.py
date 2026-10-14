@@ -1,10 +1,11 @@
+from django.conf import settings
 from django.db import models
 from datetime import date
 from usuario.models import Usuario
 
 # Create your models here.
 class Moto(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='motos')
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='motos')
 
     def __str__(self):
         return f"Dono: {self.usuario.nome}"

@@ -30,7 +30,7 @@ def addInfo(request:HttpRequest, id):
     if request.method == "POST":
         adicionarInformacao(request, id)
 
-    context = {"formOil": OleoForm(), "formWashed": WashedForm(), "formChain": ChainForm(), "moto_id": 53}
+    context = {"formOil": OleoForm(), "formWashed": WashedForm(), "formChain": ChainForm(), "moto_id": id}
     return render(request, "moto/addItem.html", context)
 
 def history(request, type):

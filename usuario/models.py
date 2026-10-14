@@ -1,11 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Usuario(models.Model):
-    nome = models.CharField(max_length=100)
+class Usuario(AbstractUser):
     email = models.EmailField(unique=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
-    ativo = models.BooleanField(default=True)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "first_name"]
 
     def __str__(self):
-        self.nome
+        return self.get_full_name() or self.email
