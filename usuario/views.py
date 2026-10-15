@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import UsuarioForm
 
+from moto.forms import motoForm
 from moto.models import Moto
 from .models import Usuario
 
@@ -20,7 +21,7 @@ def login(request):
         usuario = validarLogin(request, email, senha)
         logarUsuario(request, usuario)
 
-        return redirect("home")
+        return redirect("usuario:home")
 
     return render(request, "usuario/login.html")
 
@@ -37,7 +38,7 @@ def cadastro(request):
 
             logarUsuario(request, usuario)
 
-            return redirect("home")
+            return redirect("usuario:home")
     else:
         form = UsuarioForm()
 
@@ -47,7 +48,7 @@ def cadastro(request):
 
 def deslogar(request):
     logout(request)
-    return redirect("login")
+    return redirect("usuario:login")
 
 @login_required
 def home(request):
@@ -60,11 +61,20 @@ def home(request):
 
 @login_required
 def addMoto(request):
-    
-    user = request.user
-    Moto.objects.create(usuario=user)
+    if request.method == 'POST':
+        form = motoForm(request.POST)
 
-    return redirect("home")
+        if form.is_valid():
+            moto = form.save(commit=False)
+            moto.usuario = request.user
+            moto.save()
+
+            return redirect('usuario:home')
+    else:
+        form = motoForm()
+
+    context = {'form': form}
+    return render(request, "moto/addMoto.html", context)
 
 @login_required
 def excluirMoto(request, moto_id):
@@ -72,4 +82,4 @@ def excluirMoto(request, moto_id):
     moto = Moto.objects.filter(id=moto_id, usuario=request.user)
     moto.delete()
 
-    return redirect("home")
+    return redirect("usuario:home")

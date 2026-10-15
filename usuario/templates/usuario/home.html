@@ -18,7 +18,7 @@
             <p>Confira suas motos cadastradas.</p>
         </div>
 
-        <form action="{% url 'logout' %}" method="post" class="logout-form">
+        <form action="{% url 'usuario:logout' %}" method="post" class="logout-form">
             {% csrf_token %}
             <button type="submit" class="btn-logout">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@
                     <button>{{ moto }}</button>
                 </form>
                 
-                    <form action="{% url 'delMoto' moto.id %}" method="post">
+                    <form action="{% url 'usuario:delMoto' moto.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn-excluir" aria-label="Excluir moto">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@
 
     </section>
 
-    <form action="{% url 'addMoto' %}" method="post">
+    <form action="{% url 'usuario:addMoto' %}" method="post">
         {% csrf_token %}
         <button type="submit" id="addMoto">Adicionar moto</button>
     </form>

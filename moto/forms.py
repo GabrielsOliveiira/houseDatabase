@@ -1,6 +1,27 @@
 from django import forms
 from .models import Moto, Oleo, Washed, Chain
 
+class motoForm(forms.ModelForm):
+    class Meta:
+        model = Moto
+        fields = ['cor', 'placa']
+
+    cor = forms.CharField(
+        label='Cor',
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Digite a cor da moto'
+        })
+    )
+
+    placa = forms.CharField(
+        label='Placa',
+        max_length=10,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Digite a placa da moto'
+        })
+    )
+
 class OleoForm(forms.ModelForm):
     class Meta:
         model = Oleo

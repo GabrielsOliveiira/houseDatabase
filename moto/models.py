@@ -6,9 +6,11 @@ from usuario.models import Usuario
 # Create your models here.
 class Moto(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='motos')
+    cor = models.CharField(max_length=100)
+    placa = models.CharField(max_length=10)
 
     def __str__(self):
-        return f"Dono: {self.usuario.first_name}"
+        return f"Cor: {self.cor}, Placa: {self.placa}"
 
     @property
     def ultimo_oleo(self):
