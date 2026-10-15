@@ -54,15 +54,15 @@
         {% endif %}
 
         <div class="links">
-            <a href="{% url 'moto:history' type='oil' %}">
+            <a href="{% url 'moto:history' type='oil' id=moto_id %}">
                 🛢️ Histórico de óleo
             </a>
 
-            <a href="{% url 'moto:history' type='washed' %}">
+            <a href="{% url 'moto:history' type='washed' id=moto_id %}">
                 🧼 Histórico de lavagens
             </a>
 
-            <a href="{% url 'moto:history' type='chain' %}">
+            <a href="{% url 'moto:history' type='chain' id=moto_id %}">
                 ⛓️ Histórico de óleo da corrente
             </a>
 

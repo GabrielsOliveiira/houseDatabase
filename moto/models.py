@@ -8,7 +8,7 @@ class Moto(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='motos')
 
     def __str__(self):
-        return f"Dono: {self.usuario.nome}"
+        return f"Dono: {self.usuario.first_name}"
 
     @property
     def ultimo_oleo(self):

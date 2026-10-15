@@ -1,18 +1,18 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from .forms import UsuarioForm
 
 from moto.models import Moto
 from .models import Usuario
 
-from .services import deleteMoto, adicionarMoto, validarLogin, verificarEmailUsuario, logarUsuario
+from .services import validarLogin, verificarEmailUsuario, logarUsuario
 
 
 # Create your views here.
 
 def login(request):
-    context = {}
     if request.method == "POST":
         email = request.POST.get("email")
         senha = request.POST.get("senha")
@@ -20,10 +20,9 @@ def login(request):
         usuario = validarLogin(request, email, senha)
         logarUsuario(request, usuario)
 
-        correto = "usuarioLogado"
-        context = {"correto": correto}
+        return redirect("home")
 
-    return render(request, "usuario/login.html", context)
+    return render(request, "usuario/login.html")
 
 def cadastro(request):
     if request.method == "POST":
@@ -46,21 +45,31 @@ def cadastro(request):
         "form": form
     })
 
+def deslogar(request):
+    logout(request)
+    return redirect("login")
+
 @login_required
 def home(request):
-    user = Usuario.objects.first()
-    motos = Moto.objects.filter(usuario_id=user)
+    user = request.user
+    motos = Moto.objects.filter(usuario=user.id)
 
     return render(request, "usuario/home.html", {
         "motos": motos
     })
 
+@login_required
 def addMoto(request):
     
-    adicionarMoto()
+    user = request.user
+    Moto.objects.create(usuario=user)
+
     return redirect("home")
 
+@login_required
 def excluirMoto(request, moto_id):
 
-    deleteMoto(moto_id)
+    moto = Moto.objects.filter(id=moto_id, usuario=request.user)
+    moto.delete()
+
     return redirect("home")

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, Http404
+from django.contrib.auth.decorators import login_required
 
 from .models import Chain, Moto, Oleo, Washed
 from .forms import OleoForm, ChainForm, WashedForm
@@ -8,6 +9,7 @@ from .services import adicionarInformacao, escolherFormulario, escolherOrdem, or
 
 # Create your views here.
 
+@login_required
 def index(request, id):
 
     moto = get_object_or_404(Moto, id=id)
@@ -25,6 +27,7 @@ def index(request, id):
     
     return render(request, "moto/index.html", context)
 
+@login_required
 def addInfo(request:HttpRequest, id):
 
     if request.method == "POST":
@@ -33,14 +36,15 @@ def addInfo(request:HttpRequest, id):
     context = {"formOil": OleoForm(), "formWashed": WashedForm(), "formChain": ChainForm(), "moto_id": id}
     return render(request, "moto/addItem.html", context)
 
-def history(request, type):
-    bike = Moto.objects.first()
+@login_required
+def history(request, type, id):
+    moto = Moto.objects.get(id=id)
     data = None
 
     data = {
-        "oil": bike.oleos,
-        "chain": bike.correntes,
-        "washed": bike.lavagens
+        "oil": moto.oleos,
+        "chain": moto.correntes,
+        "washed": moto.lavagens
     }.get(type)
 
     if data is None:
@@ -61,10 +65,11 @@ def history(request, type):
     
     data = data.order_by(order)
 
-    context = {"data": data, "orders": orders, "form": form, "type": type, "moto_id": bike.id}
+    context = {"data": data, "orders": orders, "form": form, "type": type, "moto_id": id}
 
     return render(request, "moto/history.html", context)
 
+@login_required
 def delete(request, type, id):
 
     configs = {
@@ -82,6 +87,7 @@ def delete(request, type, id):
 
     return redirect("moto:history", type=type)
 
+@login_required
 def update(request, type, id):
 
     configs = {
