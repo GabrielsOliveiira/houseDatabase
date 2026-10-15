@@ -32,7 +32,7 @@ def cadastro(request):
         if form.is_valid():
             usuario = form.save(commit=False)
             usuario.set_password(form.cleaned_data["senha"])
-            usuario.username = [usuario.email]
+            usuario.username = usuario.email
 
             usuario.save()
 

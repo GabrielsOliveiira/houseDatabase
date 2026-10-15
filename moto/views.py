@@ -85,7 +85,7 @@ def delete(request, type, id):
     if request.method == "POST":
         obj.delete()
 
-    return redirect("moto:history", type=type)
+    return redirect("moto:history", type=type, id=id)
 
 @login_required
 def update(request, type, id):
@@ -106,4 +106,4 @@ def update(request, type, id):
         if form.is_valid():
             form.save()
 
-    return redirect("moto:history", type=type)
+    return redirect("moto:history", type=type, id=id)
