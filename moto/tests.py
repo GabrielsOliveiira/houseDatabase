@@ -2,12 +2,16 @@ from django.test import TestCase
 from datetime import date
 
 from .models import Moto, Oleo, Washed, Chain
+from usuario.models import Usuario
 
 # Create your tests here.
 class NeedChangeOilTests(TestCase):
 
     def setUp(self):
-        self.moto = Moto.objects.create(dono="Lucas")
+        self.usuario = Usuario.objects.create(email='TesteTando@gmail.com')
+        self.usuario.set_password('12345')
+
+        self.moto = Moto.objects.create(usuario=self.usuario)
         self.oleo = Oleo.objects.create(price=50, date=date(2026, 2, 25), kms=0, moto=self.moto)
 
     def test_change_oil_returns_true_when_km_exceeds_limit(self):
@@ -21,7 +25,10 @@ class NeedChangeOilTests(TestCase):
 
 class ExpiredTest(TestCase):
     def setUp(self):
-        self.moto = Moto.objects.create(dono="Lucas")
+        self.usuario = Usuario.objects.create(email='TesteTando@gmail.com')
+        self.usuario.set_password('12345')
+        
+        self.moto = Moto.objects.create(usuario=self.usuario)
         self.washed = Washed.objects.create(date=date(2026,8,20), moto=self.moto)
         self.oleo_corrente = Chain.objects.create(date=date(2026,8,20), moto=self.moto)
 
@@ -40,7 +47,10 @@ class ExpiredTest(TestCase):
 class MotoFunctionsTest(TestCase):
 
     def setUp(self):
-        self.moto = Moto.objects.create(dono="Rodrigo")
+        self.usuario = Usuario.objects.create(email='TesteTando@gmail.com')
+        self.usuario.set_password('12345')
+
+        self.moto = Moto.objects.create(usuario=self.usuario)
         self.oleo = Oleo.objects.create(price=50, date=date(2026, 2, 25), kms=0, moto=self.moto)
 
     def test_check_last_oil_func(self):
