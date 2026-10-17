@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import UsuarioForm
@@ -79,7 +78,7 @@ def addMoto(request):
 @login_required
 def excluirMoto(request, moto_id):
 
-    moto = Moto.objects.filter(id=moto_id, usuario=request.user)
+    moto = get_object_or_404(Moto, id=moto_id, usuario=request.user)
     moto.delete()
 
     return redirect("usuario:home")

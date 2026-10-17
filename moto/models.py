@@ -50,7 +50,7 @@ class Washed(models.Model):
             return today_minus_date >= 7
 
         given_date_minus_date = ((data-self.date).days)
-        return given_date_minus_date > 7
+        return given_date_minus_date >= 7
 
 class Chain(models.Model):
     date = models.DateField()
