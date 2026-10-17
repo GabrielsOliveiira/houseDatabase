@@ -35,22 +35,22 @@
 
     <div class="history-list">
 
-        {% for i in data %}
+        {% for info in data %}
 
             <div class="history-card">
 
                 <div class="history-info">
-                    <p>{{ i }}</p>
+                    <p>{{ info }}</p>
                 </div>
 
                 <div class="actions">
 
-                    <button class="update" type="button" data-id="{{ i.id }}">
+                    <button class="update" type="button" data-id="{{ info.id }}">
                         Atualizar
                     </button>
 
                     <form method="post"
-                          action="{% url 'moto:delete' type=type id=i.id %}">
+                          action="{% url 'moto:delete' type=type id=info.id %}">
                         {% csrf_token %}
 
                         <button type="submit" class="delete">

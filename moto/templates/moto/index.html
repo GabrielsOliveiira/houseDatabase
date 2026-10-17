@@ -32,7 +32,7 @@
                 placeholder="Digite a quilometragem atual"
             >
 
-            <button id="calcButton">Calcular</button>
+            <button data-url="{% url 'moto:check_oil' id=moto_id %}" id="calcButton">Calcular</button>
 
             <p id="oilResult"></p>
         </div>

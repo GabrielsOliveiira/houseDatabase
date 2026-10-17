@@ -31,7 +31,7 @@ class Oleo(models.Model):
     moto = models.ForeignKey(Moto, on_delete=models.CASCADE, related_name="oleos")
 
     def __str__(self):
-        return f"Preço: {self.price} na data: {self.date} enquanto ela tinha {self.kms} kms rodados."
+        return f"Preço: {self.price} --- data: {self.date} --- {self.kms} kms rodados."
     
     def need_to_change(self, current_kms):
         return (current_kms-self.kms >= 1500) 

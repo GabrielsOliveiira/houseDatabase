@@ -5,19 +5,37 @@ const calcButton = document.getElementById("calcButton")
 
 const oilResult = document.getElementById("oilResult")
 
-calcButton.addEventListener("click", () => {
-    const currentKms = Number(kmsInput.value)
-    const oldKms = Number(oldKmsInput.dataset.kms)
+calcButton.addEventListener("click", async () => {
+    const currentKms = Number(kmsInput.value);
 
-    if (currentKms < oldKms) {
-        oilResult.textContent = "A quilometragem atual não pode ser menor que a da última troca."
-        return
+    if (!kmsInput.value || !Number.isInteger(currentKms) || currentKms < 0) {
+        oilResult.textContent = "Informe uma quilometragem válida.";
+        return;
     }
 
+    const url = new URL(
+        calcButton.dataset.url,
+        window.location.origin
+    );
 
-    if (currentKms - oldKms >= 1500){
-    oilResult.textContent = "Troque o óleo"
-    } else {
-        oilResult.textContent = `Você ainda pode andar ${Math.abs(currentKms - oldKms - 1500)} kms`
+    url.searchParams.set("current_kms", currentKms);
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!response.ok) {
+            oilResult.textContent = data.error;
+            return;
+        }
+
+        if (data.precisa_trocar) {
+            oilResult.textContent = "Troque o óleo";
+        } else {
+            oilResult.textContent =
+                `Você ainda pode andar ${data.kms_restantes} kms`;
+        }
+    } catch (error) {
+        oilResult.textContent = "Erro ao calcular a troca de óleo.";
     }
-})
+});

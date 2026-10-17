@@ -40,7 +40,7 @@ def ordensPermitidas():
     }
 
 def adicionarInformacao(request, id):
-    moto = get_object_or_404(Moto, id=id)
+    moto = get_object_or_404(Moto, id=id, usuario = request.user)
 
     type_form = request.POST.get("form")
 
