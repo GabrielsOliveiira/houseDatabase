@@ -4,22 +4,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('moto', '0005_remove_moto_dono'),
+        ("moto", "0005_remove_moto_dono"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='moto',
-            name='cor',
-            field=models.CharField(default=' ', max_length=100),
+            model_name="moto",
+            name="cor",
+            field=models.CharField(default=" ", max_length=100),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='moto',
-            name='placa',
-            field=models.CharField(default=' ', max_length=10),
+            model_name="moto",
+            name="placa",
+            field=models.CharField(default=" ", max_length=10),
             preserve_default=False,
         ),
     ]

@@ -9,9 +9,11 @@ def salvarInformacaoMoto(form, moto):
     item.moto = moto
     item.save()
 
+
 def escolherFormulario(escolhido):
     forms = {"oil": OleoForm, "chain": ChainForm, "washed": WashedForm}
     return forms.get(escolhido)
+
 
 def escolherOrdem(escolhido):
     return {
@@ -19,29 +21,27 @@ def escolherOrdem(escolhido):
             ("date_desc", "Data mais recente"),
             ("date_asc", "Data mais antiga"),
             ("price_desc", "Maior preço"),
-            ("price_asc", "Menor preço")
+            ("price_asc", "Menor preço"),
         ],
-
-        "chain": [
-            ("date_desc", "Data mais recente"),
-            ("date_asc", "Data mais antiga")
-        ],
+        "chain": [("date_desc", "Data mais recente"), ("date_asc", "Data mais antiga")],
         "washed": [
             ("date_desc", "Data mais recente"),
-            ("date_asc", "Data mais antiga")
-        ]
+            ("date_asc", "Data mais antiga"),
+        ],
     }.get(escolhido)
+
 
 def ordensPermitidas():
     return {
         "date_desc": "-date",
         "date_asc": "date",
         "price_desc": "-price",
-        "price_asc": "price"
+        "price_asc": "price",
     }
 
+
 def adicionarInformacao(request, id):
-    moto = get_object_or_404(Moto, id=id, usuario = request.user)
+    moto = get_object_or_404(Moto, id=id, usuario=request.user)
 
     type_form = request.POST.get("form")
 

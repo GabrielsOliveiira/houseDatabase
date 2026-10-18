@@ -5,25 +5,36 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('moto', '0001_initial'),
+        ("moto", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='chain',
-            name='moto',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='correntes', to='moto.moto'),
+            model_name="chain",
+            name="moto",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="correntes",
+                to="moto.moto",
+            ),
         ),
         migrations.AlterField(
-            model_name='oleo',
-            name='moto',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='oleos', to='moto.moto'),
+            model_name="oleo",
+            name="moto",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="oleos",
+                to="moto.moto",
+            ),
         ),
         migrations.AlterField(
-            model_name='washed',
-            name='moto',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='lavagens', to='moto.moto'),
+            model_name="washed",
+            name="moto",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="lavagens",
+                to="moto.moto",
+            ),
         ),
     ]

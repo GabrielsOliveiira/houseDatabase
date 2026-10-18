@@ -21,6 +21,7 @@ def login(request):
 
     return render(request, "usuario/login.html")
 
+
 def cadastro(request):
     if request.method == "POST":
         form = UsuarioForm(request.POST)
@@ -38,26 +39,25 @@ def cadastro(request):
     else:
         form = UsuarioForm()
 
-    return render(request, "usuario/cadastro.html", {
-        "form": form
-    })
+    return render(request, "usuario/cadastro.html", {"form": form})
+
 
 def deslogar(request):
     logout(request)
     return redirect("usuario:login")
+
 
 @login_required
 def home(request):
     user = request.user
     motos = Moto.objects.filter(usuario=user.id)
 
-    return render(request, "usuario/home.html", {
-        "motos": motos
-    })
+    return render(request, "usuario/home.html", {"motos": motos})
+
 
 @login_required
 def addMoto(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = motoForm(request.POST)
 
         if form.is_valid():
@@ -65,12 +65,13 @@ def addMoto(request):
             moto.usuario = request.user
             moto.save()
 
-            return redirect('usuario:home')
+            return redirect("usuario:home")
     else:
         form = motoForm()
 
-    context = {'form': form}
+    context = {"form": form}
     return render(request, "moto/addMoto.html", context)
+
 
 @login_required
 def excluirMoto(request, moto_id):

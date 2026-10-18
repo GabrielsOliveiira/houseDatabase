@@ -5,7 +5,9 @@ from django.db import models
 
 
 class Moto(models.Model):
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='motos')
+    usuario = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="motos"
+    )
     cor = models.CharField(max_length=100)
     placa = models.CharField(max_length=10)
 
@@ -24,6 +26,7 @@ class Moto(models.Model):
     def ultimo_oleo_corrente(self):
         return self.correntes.order_by("-date").first()
 
+
 class Oleo(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
@@ -32,9 +35,10 @@ class Oleo(models.Model):
 
     def __str__(self):
         return f"Preço: {self.price} --- data: {self.date} --- {self.kms} kms rodados."
-    
+
     def need_to_change(self, current_kms):
-        return (current_kms-self.kms >= 1500) 
+        return current_kms - self.kms >= 1500
+
 
 class Washed(models.Model):
     date = models.DateField()
@@ -46,11 +50,12 @@ class Washed(models.Model):
     def expired(self, data=None):
 
         if data is None:
-            today_minus_date = (date.today()-self.date).days
+            today_minus_date = (date.today() - self.date).days
             return today_minus_date >= 7
 
-        given_date_minus_date = ((data-self.date).days)
+        given_date_minus_date = (data - self.date).days
         return given_date_minus_date >= 7
+
 
 class Chain(models.Model):
     date = models.DateField()
@@ -62,8 +67,8 @@ class Chain(models.Model):
     def expired(self, data=None):
 
         if data is None:
-            today_minus_date = (date.today()-self.date).days
+            today_minus_date = (date.today() - self.date).days
             return today_minus_date >= 7
 
-        given_date_minus_date = ((data-self.date).days)
+        given_date_minus_date = (data - self.date).days
         return given_date_minus_date > 7

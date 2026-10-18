@@ -5,43 +5,88 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='moto',
+            name="moto",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='chain',
+            name="chain",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('moto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='moto.moto')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                (
+                    "moto",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="moto.moto"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='oleo',
+            name="oleo",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('date', models.DateField()),
-                ('kms', models.IntegerField()),
-                ('moto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='moto.moto')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("date", models.DateField()),
+                ("kms", models.IntegerField()),
+                (
+                    "moto",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="moto.moto"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='washed',
+            name="washed",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField()),
-                ('moto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='moto.moto')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField()),
+                (
+                    "moto",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="moto.moto"
+                    ),
+                ),
             ],
         ),
     ]
