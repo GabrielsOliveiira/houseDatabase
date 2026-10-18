@@ -1,5 +1,7 @@
 from django import forms
-from .models import Moto, Oleo, Washed, Chain
+
+from .models import Chain, Moto, Oleo, Washed
+
 
 class motoForm(forms.ModelForm):
     class Meta:

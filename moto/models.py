@@ -1,9 +1,9 @@
+from datetime import date
+
 from django.conf import settings
 from django.db import models
-from datetime import date
-from usuario.models import Usuario
 
-# Create your models here.
+
 class Moto(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='motos')
     cor = models.CharField(max_length=100)

@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404
 
+from .forms import ChainForm, OleoForm, WashedForm
 from .models import Moto
-from .forms import OleoForm, ChainForm, WashedForm
+
 
 def salvarInformacaoMoto(form, moto):
     item = form.save(commit=False)

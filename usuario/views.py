@@ -1,16 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from .forms import UsuarioForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
 
 from moto.forms import motoForm
 from moto.models import Moto
-from .models import Usuario
 
-from .services import validarLogin, verificarEmailUsuario, logarUsuario
+from .forms import UsuarioForm
+from .services import logarUsuario, validarLogin
 
-
-# Create your views here.
 
 def login(request):
     if request.method == "POST":

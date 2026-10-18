@@ -1,14 +1,14 @@
-from django.test import TestCase
-from django.urls import reverse
 from datetime import date
 
-from .models import Moto, Oleo, Washed, Chain
-from usuario.models import Usuario
+from django.test import TestCase
+from django.urls import reverse
 
 from usuario.forms import UsuarioForm
-from moto.forms import motoForm
+from usuario.models import Usuario
 
-# Create your tests here.
+from .models import Chain, Moto, Oleo, Washed
+
+
 class NeedChangeOilTests(TestCase):
 
     def setUp(self):

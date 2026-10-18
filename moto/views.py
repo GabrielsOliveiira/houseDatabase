@@ -1,14 +1,16 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpRequest, Http404
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import Http404, HttpRequest, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .forms import ChainForm, OleoForm, WashedForm
 from .models import Chain, Moto, Oleo, Washed
-from .forms import OleoForm, ChainForm, WashedForm
+from .services import (
+    adicionarInformacao,
+    escolherFormulario,
+    escolherOrdem,
+    ordensPermitidas,
+)
 
-from .services import adicionarInformacao, escolherFormulario, escolherOrdem, ordensPermitidas
-
-# Create your views here.
 
 @login_required
 def index(request, id):
