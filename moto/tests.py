@@ -153,3 +153,39 @@ class AlteracaoDeItem(TestCase):
 
         self.oleo.refresh_from_db()
         self.assertEqual(self.oleo.price, 10)
+
+
+class Adicionandotem(TestCase):
+    def setUp(self):
+        self.usuario1 = Usuario.objects.create(
+            email="user1@gmail.com", first_name="123", username="user1@gmail.com"
+        )
+        self.usuario2 = Usuario.objects.create(
+            email="user2@gmail.com", first_name="123", username="user2@gmail.com"
+        )
+
+        self.moto = Moto.objects.create(
+            usuario=self.usuario1, cor="Cinza", placa="1234"
+        )
+
+    def test_criando_oleo_para_moto_alheia(self):
+        self.client.force_login(self.usuario2)
+
+        response = self.client.post(
+            reverse('moto:addInfo', args=[self.moto.id]),
+            data={"form": "oil", "price":50, "date":date(2026, 2, 25), "kms":1000, "moto":self.moto}
+        )
+
+        self.assertEqual(response.status_code, 404)
+        self.assertFalse(Oleo.objects.filter(moto=self.moto, price=50, kms=1000).exists())
+
+    def test_criando_oleo_para_si(self):
+        self.client.force_login(self.usuario1)
+
+        response = self.client.post(
+            reverse('moto:addInfo', args=[self.moto.id]),
+            data={"form": "oil", "price":50, "date":date(2026, 2, 25), "kms":1000, "moto":self.moto}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(Oleo.objects.filter(moto=self.moto, price=50, kms=1000).exists())
