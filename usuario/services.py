@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
-from .exceptions import EmailOuSenhaInvalidos
 
+from .exceptions import EmailOuSenhaInvalidos
 from .models import Usuario
 
 
